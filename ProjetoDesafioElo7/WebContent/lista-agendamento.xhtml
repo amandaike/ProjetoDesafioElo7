@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="title">Consultar Agendamentos</ui:define>
+	<ui:define name="content">
+	<h:body>
+	    
+	    <h3>Transferências Financeiras Agendadas</h3>
+	    
+	    <h:message/>
+	    
+	    <h:dataTable value="#{listarTransferencias.lista}" var="trans" emptyMessage="Nenhuma transferência encontrada">
+	    	<h:column ></h:column>
+	    	<h:column headerText="Conta Origem">#{trans.contaOrigem}</h:column>
+	    	<h:column headerText="Conta Destino">#{trans.contaDestino}</h:column>
+		    <h:column headerText="Valor">#{trans.valor}</h:column>
+		    <h:column headerText="Taxa">#{trans.vlTaxa}</h:column>
+		    <h:column headerText="Tipo Transação">#{trans.tipoTransacao}</h:column>
+			<h:column headerText="Data Agendamento">
+				<h:outputText value="#{trans.dataAgendamento.time}">
+	    			<f:convertDateTime pattern="dd/MM/yyyy"/>
+	    		</h:outputText>
+			</h:column>    
+	    
+	    </h:dataTable>
+	    
+	    <b:container>
+	    	<div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Conta Origem</th>
+                                <th>Conta Destino</th>
+                                <th>Valor</th>
+                                <th>Taxa</th>
+                                <th>Tipo Transação</th>
+                                <th>Data Agendamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="trans" value="#{listarTransferencias.lista}">
+            					<tr>
+            						<th><h:outputText value="#{trans.contaOrigem}" /> </th>
+            						<th><h:outputText value="#{trans.contaDestino}" /> </th>
+            						<th><h:outputText value="#{trans.valor}" /> </th>
+            						<th><h:outputText value="#{trans.vlTtaxa}" /> </th>
+            						<th><h:outputText value="#{trans.tipoTransacao}" /> </th>
+            						<th><h:outputText value="#{trans.dataAgendamento}" /></th>
+            					</tr>
+        					</ui:repeat>
+                        </tbody>
+                    </table>
+                </div>
+	    </b:container>
+	    
+	    
+	</h:body>
+	</ui:define>
+
+</ui:composition>
+</html>

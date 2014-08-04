@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+  <title><ui:insert name="title">Banco ELO</ui:insert></title>
+</h:head>
+
+<h:body>
+
+<div id="header">
+    <ui:insert name="header">
+    	<b:navBar brand="Banco ELO" brandHref="#" inverse="true">
+    		<b:navbarLinks>
+    		<b:dropMenu value="Transferência">
+    			<b:navLink value="Agendar" href="agenda-transferencia.xhtml"></b:navLink>
+    			<b:navLink value="Consultar" href="lista-agendamento.xhtml"></b:navLink>
+    		</b:dropMenu>
+    		</b:navbarLinks>
+    	</b:navBar>
+    </ui:insert>
+</div>
+
+
+<div id="content">
+  <ui:insert name="content">
+  </ui:insert>
+</div>
+
+<div id="footer">
+  <ui:insert name="footer">
+  	<hr/>
+  	<p>© Company 2014</p>
+  </ui:insert>
+</div>
+
+</h:body>
+
+</html>

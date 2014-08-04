@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="title">Agendamento de Transferência</ui:define>
+	<ui:define name="content">
+	<h:body>
+		
+		<b:container>
+		<h3>Agendamento de Transferência</h3>
+		
+		<h:form>
+				
+			<h:message for="mensagem" ></h:message>
+				
+			<h:panelGrid columns="2">
+				
+				<h:outputLabel value="Conta Origem" for="contaOrigem" />
+				<b:inputText maxlength="7" required="true" requiredMessage="Preencha Conta Origem " value="#{transferenciaBean.transferencia.contaOrigem}" id="contaOrigem" />
+				
+				<h:outputLabel value="Conta Destino" for="contaDestino" />
+				<b:inputText required="true" maxlength="7" value="#{transferenciaBean.transferencia.contaDestino}" id="contaDestino" />
+				
+				<h:outputLabel value="Valor" for="valor" />
+				<b:inputText required="true" value="#{transferenciaBean.transferencia.valor}" id="valor">
+					<f:facet name="prepend">
+                		<h:outputText value="R$" />
+            		</f:facet>
+				</b:inputText>				
+				
+				<h:outputLabel value="Data do Agendamento" for="dataAgendamento" />							
+				<b:datepicker id="dataAgend" mode="icon-popup" value="#{transferenciaBean.dataAgend}"/>
+				
+				<h:outputLabel value="Tipo Transação" for="tipoTransacao" />											
+				<h:selectOneMenu id="tipoTransacao" value="#{transferenciaBean.transferencia.tipoTransacao}">
+					<f:selectItems value="#{tipoTransacaoBean.tipoTransacao}" var="t" itemLabel="#{t.label}" itemValue="#{t}" />
+				</h:selectOneMenu>									
+				
+				<h:outputLabel value="Taxa" for="valorTaxa" />
+				<b:inputText value="#{transferenciaBean.transferencia.vlTtaxa}" id="valorTaxa">
+					<f:facet name="append">
+                    	<b:commandButton look="inverse" value="Calcular Taxa" actionListener="#{transferenciaBean.calcularValorTaxa}"/>
+                    </f:facet>
+				</b:inputText> 
+				
+				<b:commandButton look="primary" process="@form" immediate="false" value="Agendar Transferência" actionListener="#{transferenciaBean.agendarTransferencia}"/>
+												
+			</h:panelGrid>
+		</h:form>
+		</b:container>
+	</h:body>
+	</ui:define>
+</ui:composition>
+</html>
