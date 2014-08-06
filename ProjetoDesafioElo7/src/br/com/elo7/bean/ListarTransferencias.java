@@ -14,17 +14,18 @@ import br.com.elo7.to.Transferencia;
 @ViewScoped
 public class ListarTransferencias implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4266115044964767231L;
 	private List<Transferencia> lista;
 	
 	@PostConstruct
 	private void init(){
-		listar();
-	}
-	
-	public void listar(){
 		TransferenciaBO transBO = new TransferenciaBO();
-		transBO.listarTransferencias();
+		lista = transBO.listarTransferencias();
 	}
+
 
 	public List<Transferencia> getLista() {
 		return lista;

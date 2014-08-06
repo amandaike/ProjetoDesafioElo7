@@ -73,10 +73,10 @@ public class ConsoleView {
 				break;
 			}
 			
-			trans.setVlTtaxa(taxa);
+			trans.setVlTaxa(taxa);
 			
 			try {
-				tBO.agendarTransferencia(trans);
+				tBO.cadastrar(trans);
 				System.out.println("** Transação Financeira agendado com sucesso **");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -119,10 +119,10 @@ public class ConsoleView {
 				break;
 			}
 			
-			trans.setVlTtaxa(taxa);
+			trans.setVlTaxa(taxa);
 			
 			try {
-				tBO.agendarTransferencia(trans);
+				tBO.cadastrar(trans);
 				System.out.println("** Transação Financeira agendado com sucesso **");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -140,7 +140,7 @@ public class ConsoleView {
 				System.out.println("Conta Destino: " + trans.getContaDestino());
 				System.out.println("Data de Agendamento: " + sdf.format(trans.getDataAgendamento().getTime()));
 				System.out.println("Valor: R$" + trans.getValor());
-				System.out.println("Transação do Tipo " + trans.getTipoTransacao() + " de R$" + trans.getVlTtaxa());
+				System.out.println("Transação do Tipo " + trans.getTipoTransacao() + " de R$" + trans.getVlTaxa());
 				
 			}
 		}else{

@@ -9,10 +9,9 @@
 		<async-supported>false</async-supported>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>
-		/faces/*</url-pattern>
-	</servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>agenda-transferencia.xhtml</welcome-file>
 	</welcome-file-list>

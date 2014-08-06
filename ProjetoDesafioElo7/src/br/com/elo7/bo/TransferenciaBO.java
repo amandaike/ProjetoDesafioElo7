@@ -2,12 +2,9 @@ package br.com.elo7.bo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 
@@ -16,13 +13,11 @@ import org.joda.time.Days;
 
 import br.com.elo7.dao.TransferenciaDAO;
 import br.com.elo7.dao.impl.TransferenciaDAOImpl;
-import br.com.elo7.enums.TipoTransacao;
 import br.com.elo7.singleton.EntityManagerFactorySingleton;
 import br.com.elo7.to.Transferencia;
 
 public class TransferenciaBO {
 
-	private static List<Transferencia> lstTransferencia = new ArrayList<Transferencia>();
 	private static TransferenciaDAO tDAO;
 	
 	public TransferenciaBO(){
@@ -30,18 +25,29 @@ public class TransferenciaBO {
 		tDAO = new TransferenciaDAOImpl(em);
 	}
 	
-	public void agendarTransferencia(Transferencia t) throws Exception{
+	/**
+	 * Calcula a taxa da transação e cadastra agendamento de transferencia
+	 * @param t
+	 * @throws Exception
+	 */
+	public void cadastrar(Transferencia t) throws Exception{
 		calcularTaxa(t);	
-		//lstTransferencia.add(t);
 		tDAO.inserir(t);
-		
 	}
-		
+
+	/**
+	 * Retorna numa lista todas as transferencias agendadas
+	 * @return List<Transferencia>
+	 */
 	public List<Transferencia> listarTransferencias(){
-		//return lstTransferencia;
 		return tDAO.listarTodos();
 	}
 	
+	/**
+	 * Recebe o objeto do tipo Transferencia para calcular o valor da taxa a ser cobrada
+	 * @param trans Transferencia
+	 * @return taxa float
+	 */
 	public float calcularTaxa(Transferencia trans){
 		float taxa = 0;
 		
@@ -161,6 +167,12 @@ public class TransferenciaBO {
 		return taxa;
 	}
 	
+	/**
+	 * Converte uma data do tipo Date para tipo Calendar
+	 * @param dataAgendamento
+	 * @return
+	 * @see TransferenciaBean
+	 */
 	public Calendar converterDataAgendamento(Date dataAgendamento){
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String dt = sdf.format(dataAgendamento);
@@ -168,7 +180,6 @@ public class TransferenciaBO {
 		try {
 			data.setTime(sdf.parse(dt));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

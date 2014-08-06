@@ -10,32 +10,38 @@
 <ui:composition template="_template.xhtml">
 	<ui:define name="title">Agendamento de Transferência</ui:define>
 	<ui:define name="content">
-	<h:body>
 		
 		<b:container>
-		<h3>Agendamento de Transferência</h3>
 		
+		<b:panel title="Agendar Transferência Financeira">
 		<h:form>
 				
-			<h:message for="mensagem" ></h:message>
+			<h:messages errorClass="alert-error" infoClass="alert-info"  />
 				
 			<h:panelGrid columns="2">
 				
 				<h:outputLabel value="Conta Origem" for="contaOrigem" />
-				<b:inputText maxlength="7" required="true" requiredMessage="Preencha Conta Origem " value="#{transferenciaBean.transferencia.contaOrigem}" id="contaOrigem" />
-				
+				<b:inputText maxlength="7" required="true"  requiredMessage="Conta Origem deve ser preenchido" 
+					value="#{transferenciaBean.transferencia.contaOrigem}" id="contaOrigem" validator="#{transferenciaBean.validaFormatoConta}"/>
+					
 				<h:outputLabel value="Conta Destino" for="contaDestino" />
-				<b:inputText required="true" maxlength="7" value="#{transferenciaBean.transferencia.contaDestino}" id="contaDestino" />
+				<b:inputText required="true" maxlength="7" requiredMessage="Conta Destino deve ser preenchido"
+					value="#{transferenciaBean.transferencia.contaDestino}" id="contaDestino"  validator="#{transferenciaBean.validaFormatoConta}"/>
 				
 				<h:outputLabel value="Valor" for="valor" />
-				<b:inputText required="true" value="#{transferenciaBean.transferencia.valor}" id="valor">
+				<b:inputText required="true" requiredMessage="Valor deve ser preenchido" id="valor"
+					value="#{transferenciaBean.transferencia.valor}">
 					<f:facet name="prepend">
                 		<h:outputText value="R$" />
             		</f:facet>
+            		<f:convertNumber pattern= "#0.00" />
+            		<f:validateDoubleRange minimum="10.00"/>
 				</b:inputText>				
 				
 				<h:outputLabel value="Data do Agendamento" for="dataAgendamento" />							
-				<b:datepicker id="dataAgend" mode="icon-popup" value="#{transferenciaBean.dataAgend}"/>
+				<b:datepicker id="dataAgendamento" mode="icon-popup" value="#{transferenciaBean.dataAgend}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</b:datepicker>
 				
 				<h:outputLabel value="Tipo Transação" for="tipoTransacao" />											
 				<h:selectOneMenu id="tipoTransacao" value="#{transferenciaBean.transferencia.tipoTransacao}">
@@ -43,7 +49,8 @@
 				</h:selectOneMenu>									
 				
 				<h:outputLabel value="Taxa" for="valorTaxa" />
-				<b:inputText value="#{transferenciaBean.transferencia.vlTtaxa}" id="valorTaxa">
+				<b:inputText value="#{transferenciaBean.transferencia.vlTaxa}" id="valorTaxa" disabled="true">
+					<f:convertNumber pattern= "#0.00" />
 					<f:facet name="append">
                     	<b:commandButton look="inverse" value="Calcular Taxa" actionListener="#{transferenciaBean.calcularValorTaxa}"/>
                     </f:facet>
@@ -53,8 +60,8 @@
 												
 			</h:panelGrid>
 		</h:form>
+		</b:panel>
 		</b:container>
-	</h:body>
 	</ui:define>
 </ui:composition>
 </html>

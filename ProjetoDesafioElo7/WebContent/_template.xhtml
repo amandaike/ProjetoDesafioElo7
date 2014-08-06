@@ -6,6 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
   <title><ui:insert name="title">Banco ELO</ui:insert></title>
+  <h:outputStylesheet name="estilo.css" library="css" />
 </h:head>
 
 <h:body>
@@ -14,7 +15,7 @@
     <ui:insert name="header">
     	<b:navBar brand="Banco ELO" brandHref="#" inverse="true">
     		<b:navbarLinks>
-    		<b:dropMenu value="Transferência">
+    		<b:dropMenu value="Transferência"  id="custom-menu">
     			<b:navLink value="Agendar" href="agenda-transferencia.xhtml"></b:navLink>
     			<b:navLink value="Consultar" href="lista-agendamento.xhtml"></b:navLink>
     		</b:dropMenu>

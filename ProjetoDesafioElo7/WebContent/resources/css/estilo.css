@@ -1,0 +1,33 @@
+
+.alert-error{
+	text-indent:10px;
+	border-width:2px;
+	border-style:solid;
+	border-radius:5px;
+	list-style-type:none;
+	background-color:rgba(255,0,0,0.1);
+	border-color:rgba(255,0,0,0.2);
+}
+
+.alert-info{
+	text-indent:10px;
+	border-width:2px;
+	border-style:solid;
+	border-radius:5px;
+	list-style-type:none;
+	background-color:rgba(0,0,255,0.1);
+	border-color:rgba(0,0,255,0.2);
+}
+
+#custom th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #484848    ;
+    color: #ffffff;
+}
+
+#custom-menu{
+	font-size: 16px;
+}

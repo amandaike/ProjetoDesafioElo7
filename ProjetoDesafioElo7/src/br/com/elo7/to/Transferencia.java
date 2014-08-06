@@ -39,7 +39,7 @@ public class Transferencia implements Serializable {
 	private float valor;
 	
 	@Column(name="vl_taxa", nullable=false)
-	private float vlTtaxa;
+	private float vlTaxa;
 	
 	@Temporal(TemporalType.DATE)
 	private Calendar dataAgendamento;
@@ -51,14 +51,14 @@ public class Transferencia implements Serializable {
 	}
 
 	public Transferencia(int codigo, String contaOrigem, String contaDestino,
-			float valor, float vlTtaxa, Calendar dataAgendamento,
+			float valor, float vlTaxa, Calendar dataAgendamento,
 			TipoTransacao tipoTransacao) {
 		super();
 		this.codigo = codigo;
 		this.contaOrigem = contaOrigem;
 		this.contaDestino = contaDestino;
 		this.valor = valor;
-		this.vlTtaxa = vlTtaxa;
+		this.vlTaxa = vlTaxa;
 		this.dataAgendamento = dataAgendamento;
 		this.tipoTransacao = tipoTransacao;
 	}
@@ -95,12 +95,12 @@ public class Transferencia implements Serializable {
 		this.valor = valor;
 	}
 
-	public float getVlTtaxa() {
-		return vlTtaxa;
+	public float getVlTaxa() {
+		return vlTaxa;
 	}
 
-	public void setVlTtaxa(float vlTtaxa) {
-		this.vlTtaxa = vlTtaxa;
+	public void setVlTaxa(float vlTaxa) {
+		this.vlTaxa = vlTaxa;
 	}
 
 	public Calendar getDataAgendamento() {
